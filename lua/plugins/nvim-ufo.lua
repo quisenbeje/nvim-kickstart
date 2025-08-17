@@ -1,7 +1,9 @@
 return {
    'kevinhwang91/nvim-ufo',
-   enabled = false,
-   event = 'VeryLazy',
+   dependencies = { 'kevinhwang91/promise-async' },
+   enabled = true,
+   event = 'BufReadPost',
+   -- event = 'VeryLazy',
    keys = {
       { 'zc', mode = 'n', desc = 'Fold current line' },
       { 'zo', mode = 'n', desc = 'Unfold current line' },
@@ -10,7 +12,6 @@ return {
       { 'zr', mode = 'n', desc = 'Unfold all lines' },
       { 'zR', mode = 'n', desc = 'Fold all lines' },
    },
-   dependencies = { 'kevinhwang91/promise-async' },
    opts = {
       provider_selector = function()
          return { 'lsp', 'indent' }
@@ -32,10 +33,12 @@ return {
       },
    },
    config = function()
-      vim.o.foldcolumn = '1' -- '0' is not bad
+      vim.o.foldenable = true
+      -- vim.o.foldcolumn = '1' -- '0' is not bad
+      vim.o.foldcolumn = 'auto:9' -- '0' is not bad
       vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
       vim.o.foldlevelstart = 99
-      vim.o.foldenable = true
+      vim.o.fillchars = 'eob: ,fold: ,foldopen:,foldsep:│,foldclose:'
 
       require('ufo').setup {
          provider_selector = function(bufnr, filetype, buftype)

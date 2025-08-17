@@ -27,6 +27,7 @@ return { -- Autoformat
          javascript = { 'prettierd', 'prettier' },
          -- typescript = { 'prettierd', 'prettier', stop_after_first = true },
          typescript = { 'prettierd', 'prettier' },
+         markdown = { 'prettierd', 'prettier' },
       },
       -- Set default options
       default_format_opts = {
